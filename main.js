@@ -6,7 +6,7 @@ window.addEventListener('load', function(){
 
     // canvas settings
     ctx.fillStyle = 'yellow';
-    ctx.strokeStyle = 'violet';
+    ctx.strokeStyle = 'blueviolet';
     ctx.lineWidth = 30;
     ctx.lineCap = 'round';
 
