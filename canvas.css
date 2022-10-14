@@ -5,8 +5,9 @@
 }
 
 #canvas1 {
-  background: rgb(212, 102, 172);
+  background: rgb(254, 6, 6);
   position: absolute;
-  left: 0;
-  top: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
