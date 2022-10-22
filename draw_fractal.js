@@ -6,7 +6,6 @@ window.addEventListener('load', function(){
 
     // canvas settings
     ctx.fillStyle = 'yellow';
-    ctx.lineWidth = 10;
     ctx.shadowColor = 'rgba(0,0,0,1)';
     ctx.shadowOffsetX = 10;
     ctx.shadowOffsetY = 5;
@@ -21,7 +20,8 @@ window.addEventListener('load', function(){
     let scale = 0.5;
     let spread = 0.1;
     let color = 'hsl(' + Math.random() * 360 + ', 100%, 50%)';
-
+    let lineWidth = Math.floor(Math.random() * 20 + 10);
+    
     // controls
     const randomizeButton = document.getElementById('randomizeButton');
     
@@ -35,16 +35,18 @@ window.addEventListener('load', function(){
         for (let i = 0; i < branches; i++){
             ctx.save();
             ctx.translate(size - (size/branches) * i,-10);
-            ctx.rotate(spread);
             ctx.scale(scale,scale);
+
+            ctx.save();
+            ctx.rotate(spread);
             drawBranch(level + 1);
             ctx.restore();
 
             ctx.save();
-            ctx.translate(size - (size/branches) * i,0);
             ctx.rotate(-spread);
-            ctx.scale(scale,scale);
             drawBranch(level + 1);
+            ctx.restore();
+
             ctx.restore();
         }
     }
@@ -52,6 +54,7 @@ window.addEventListener('load', function(){
     function drawFractal(){
         ctx.clearRect(0,0,canvas.width,canvas.height);
         ctx.save();
+        ctx.lineWidth = lineWidth;
         ctx.strokeStyle = color;
         ctx.translate(canvas.width/2,canvas.height/2);
         for (let i = 0; i < sides; i++){
@@ -63,12 +66,15 @@ window.addEventListener('load', function(){
     drawFractal();
 
     function randomizeFractal(){
-        sides = Math.random() * 7 + 2;
+        sides = Math.floor(Math.random() * 7 + 2);
         scale = Math.random() * 0.2 + 0.4;
         spread = Math.random() * 2.9 + 0.1;
         color = 'hsl(' + Math.random() * 360 + ', 100%, 50%)';
-        drawFractal();
+        lineWidth = Math.floor(Math.random() * 20 + 10);
     }
     
-    randomizeButton.addEventListener('click', randomizeFractal);
+    randomizeButton.addEventListener('click', function(){
+        randomizeFractal();
+        drawFractal();
+    });
 });
