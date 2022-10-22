@@ -6,7 +6,7 @@ window.addEventListener('load', function(){
 
     // canvas settings
     ctx.fillStyle = 'yellow';
-    ctx.lineWidth = 20;
+    ctx.lineWidth = 10;
     ctx.shadowColor = 'rgba(0,0,0,1)';
     ctx.shadowOffsetX = 10;
     ctx.shadowOffsetY = 5;
@@ -15,14 +15,15 @@ window.addEventListener('load', function(){
 
     // effect settings
     let size = canvas.width < canvas.height ? canvas.width * 0.3 : canvas.height * 0.5;     // ternary operator condition to evaluate ? run this if true : run this if false
+    const maxLevel = 4;       // determines depth of the fractal
+    const branches = 2;
     let sides = 5;
-    let maxLevel = 4;       // determines depth of the fractal
     let scale = 0.5;
-    let spread = 0.5;
-    let branches = 2;
+    let spread = 0.1;
     let color = 'hsl(' + Math.random() * 360 + ', 100%, 50%)';
 
-    // Fractal Art
+    // controls
+    const randomizeButton = document.getElementById('randomizeButton');
     
     function drawBranch(level){
         if (level > maxLevel) return;
@@ -59,5 +60,14 @@ window.addEventListener('load', function(){
         ctx.restore()
     }
     drawFractal();
+
+    function randomizeFractal(){
+        sides = Math.random() * 7 + 2;
+        scale = Math.random() * 0.2 + 0.4;
+        spread = Math.random() * 2.9 + 0.1;
+        color = 'hsl(' + Math.random() * 360 + ', 100%, 50%)';
+        drawFractal();
+    }
+    randomizeButton.addEventListener('click', randomizeFractal);
 
 });
