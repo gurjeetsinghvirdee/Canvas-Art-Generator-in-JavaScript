@@ -68,6 +68,6 @@ window.addEventListener('load', function(){
         color = 'hsl(' + Math.random() * 360 + ', 100%, 50%)';
         drawFractal();
     }
+    
     randomizeButton.addEventListener('click', randomizeFractal);
-
 });
