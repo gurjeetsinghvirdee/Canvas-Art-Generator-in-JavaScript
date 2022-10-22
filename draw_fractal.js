@@ -6,16 +6,21 @@ window.addEventListener('load', function(){
 
     // canvas settings
     ctx.fillStyle = 'yellow';
-    ctx.strokeStyle = 'lime';
-    ctx.lineWidth = 25;
+    ctx.lineWidth = 20;
+    ctx.shadowColor = 'rgba(0,0,0,1)';
+    ctx.shadowOffsetX = 10;
+    ctx.shadowOffsetY = 5;
+    ctx.shadowBlur = 10;
+
 
     // effect settings
-    let size = 170;
-    let sides = 10;
-    let maxLevel = 3;
-    let scale = 0.6;
-    let spread = 0.8;
+    let size = canvas.width < canvas.height ? canvas.width * 0.3 : canvas.height * 0.5;     // ternary operator condition to evaluate ? run this if true : run this if false
+    let sides = 5;
+    let maxLevel = 4;       // determines depth of the fractal
+    let scale = 0.5;
+    let spread = 0.5;
     let branches = 2;
+    let color = 'hsl(' + Math.random() * 360 + ', 100%, 50%)';
 
     // Fractal Art
     
@@ -28,7 +33,7 @@ window.addEventListener('load', function(){
         
         for (let i = 0; i < branches; i++){
             ctx.save();
-            ctx.translate(size - (size/branches) * i,0);
+            ctx.translate(size - (size/branches) * i,-10);
             ctx.rotate(spread);
             ctx.scale(scale,scale);
             drawBranch(level + 1);
@@ -45,9 +50,8 @@ window.addEventListener('load', function(){
 
     function drawFractal(){
         ctx.save();
+        ctx.strokeStyle = color;
         ctx.translate(canvas.width/2,canvas.height/2);
-        ctx.scale(1,1);
-        ctx.rotate(0);
         for (let i = 0; i < sides; i++){
             ctx.rotate((Math.PI * 2)/sides);    // angle values in radians
                 drawBranch(0);
