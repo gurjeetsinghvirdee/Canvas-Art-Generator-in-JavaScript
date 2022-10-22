@@ -50,6 +50,7 @@ window.addEventListener('load', function(){
     }
 
     function drawFractal(){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
         ctx.save();
         ctx.strokeStyle = color;
         ctx.translate(canvas.width/2,canvas.height/2);
