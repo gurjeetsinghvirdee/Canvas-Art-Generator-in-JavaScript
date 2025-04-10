@@ -1,3 +1,4 @@
+<!-- GitAds-Verify: ULP9DYQ878SWJWSSJ1K5Q79NDG21YEGG -->
 # Canvas Art Generator in JavaScript
 
 This JavaScript project provides a versatile canvas art generator capable of creating mesmerizing fractal patterns and intricate shapes. With three distinct scripts - `fractal.js`, `fractal_branch.js`, and `star_shape.js` - users can effortlessly generate stunning visual effects on the canvas.
